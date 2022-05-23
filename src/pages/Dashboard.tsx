@@ -1,9 +1,10 @@
 import React from 'react';
+import MideaTable from '../components/MideaTable/MideaTable';
 
 const Dashboard = () => {
   return (
     <div>
-      <p>Dashboard</p>
+      <MideaTable />
     </div>
   );
 };

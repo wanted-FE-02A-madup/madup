@@ -1,0 +1,42 @@
+@use '../../styles/constants/colors';
+
+.scroll {
+  &::-webkit-scrollbar {
+    display: block;
+    height: 10px;
+  }
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: colors.$GRAY100;
+    border-radius: 10px;
+  }
+
+  .table {
+    width: 945px;
+    border-top: 1px solid colors.$GRAY300;
+    border-bottom: 1px solid colors.$GRAY300;
+
+    .line {
+      border-bottom: 1px solid colors.$GRAY300;
+    }
+
+    th,
+    td {
+      padding: 12px 0;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 14px;
+      color: colors.$GRAY800;
+      text-align: right;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    .head {
+      color: colors.$GRAY300;
+    }
+  }
+}
