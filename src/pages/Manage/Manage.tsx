@@ -14,7 +14,7 @@ const Manage = () => {
             <option value=''>전체 광고</option>
           </select>
 
-          <Button createBtn='createBtn'>광고 만들기</Button>
+          <Button createButton='createButton'>광고 만들기</Button>
         </div>
         <div className={styles.manageContents}>
           {ADLIST.ads.map((item) => (
