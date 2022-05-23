@@ -1,11 +1,20 @@
 @use '../styles/constants/colors';
 
+.wrapper {
+  display: flex;
+}
+
+.contentWrap {
+  width: calc(100% - 320px);
+  padding: 0 40px;
+  background: #f6f7f8;
+}
+
 .app {
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  color: colors.$FONT_BLACK;
-  // background-color: colors.$GRAYD;
+  background-color: colors.$GRAYD;
 }

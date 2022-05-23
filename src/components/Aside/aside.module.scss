@@ -1,0 +1,122 @@
+@use '../../styles/mixins/flexbox';
+@use '../../styles/constants/colors';
+
+.sidebar {
+  width: 320px;
+  height: auto;
+  padding: 0 40px;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 4%);
+}
+
+.logo {
+  height: 150px;
+  border-bottom: 1px solid #edeff1;
+  @include flexbox.flexbox(start, center);
+}
+
+.service {
+  flex-direction: column;
+  height: 193px;
+  @include flexbox.flexbox(center, start);
+
+  .selector {
+    width: 240px;
+    height: 60px;
+    padding: 0 20px;
+    background: #ffffff;
+    border: 1px solid #d1d8dc;
+    border-radius: 10px;
+    @include flexbox.flexbox(between, center);
+  }
+}
+
+.title {
+  margin-bottom: 13px;
+  margin-left: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #94a2ad;
+}
+
+.addCenter {
+  height: 407px;
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 160px;
+    margin-top: 40px;
+
+    span {
+      padding: 13px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 14px;
+      color: colors.$GRAY300;
+    }
+
+    a {
+      @include flexbox.flexbox(start, center);
+      width: 100%;
+      height: 60px;
+      padding: 20px 22px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 19px;
+      color: colors.$GRAY800;
+      border-radius: 10px;
+
+      &.isActive {
+        color: colors.$PRIMARY;
+        background-color: colors.$GRAY50;
+      }
+    }
+  }
+}
+
+.guide {
+  height: 100px;
+  padding-left: 20px;
+  margin-bottom: 40px;
+  background: #e5f4fd;
+  border-radius: 10px;
+  @include flexbox.flexbox(start, center);
+
+  .guideIcon {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    background: #586cf5;
+    border-radius: 50%;
+    @include flexbox.flexbox(center, center);
+  }
+
+  .guideText {
+    .guideTextTitle {
+      margin-bottom: 7px;
+      font-weight: 700;
+      color: #3a474e;
+    }
+
+    .guideTextBody {
+      font-size: 12px;
+      color: #94a2ad;
+    }
+  }
+}
+
+.footer {
+  padding: 0 20px;
+  font-size: 12px;
+  color: #94a2ad;
+
+  .footerText {
+    margin-bottom: 10px;
+  }
+
+  .footerTerm {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
