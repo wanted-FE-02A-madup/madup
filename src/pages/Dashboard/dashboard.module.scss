@@ -1,0 +1,22 @@
+@import url('../../styles/base/_fonts.scss');
+
+.dashboard {
+  .top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    // padding-bottom: 25px;
+
+    h2 {
+      font-family: 'Roboto', sans-serif, Inter, Arial, PingFangSC-Regular, 'Microsoft YaHei';
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    // .datePicker {
+    //   position: absolute;
+    // }
+  }
+}

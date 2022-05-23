@@ -3,7 +3,7 @@ import Aside from '../components/Aside/Aside';
 import Header from '../components/Header/Header';
 import Layout from '../components/Layout';
 
-import Dashboard from '../pages/Dashboard';
+import Dashboard from '../pages/Dashboard/Dashboard';
 import Manage from '../pages/Manage';
 
 import styles from './routes.module.scss';
