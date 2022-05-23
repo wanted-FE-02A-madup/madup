@@ -1,3 +1,4 @@
+@use '/src/styles/constants/colors';
 @import url('../../styles/base/_fonts.scss');
 
 .dashboard {
@@ -14,9 +15,19 @@
       font-size: 26px;
       font-weight: 900;
     }
+  }
 
-    // .datePicker {
-    //   position: absolute;
-    // }
+  .subTitle {
+    padding-bottom: 20px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .adStatus {
+    padding: 41px 40px 98px;
+  }
+
+  .chartBox {
+    background: colors.$WHITE;
   }
 }

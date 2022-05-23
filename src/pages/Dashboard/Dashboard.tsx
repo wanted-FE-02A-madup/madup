@@ -10,6 +10,15 @@ const Dashboard = () => {
           <DatePicker />
         </div>
       </div>
+      <section className={styles.adStatus}>
+        <h3 className={styles.subTitle}>통합 광고 현황</h3>
+        <div className={styles.chartBox}>
+          <div className={styles.chart}>
+            <button type='button'>Roas</button>
+            <button type='button'>Roas</button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
