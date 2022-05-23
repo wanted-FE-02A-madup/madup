@@ -10,7 +10,7 @@
   width: 22%;
   height: auto;
   padding: 0 40px;
-  box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: 4px 0px 10px rgba(colors.$BLACK, 0.04);
 }
 
 .logo {
@@ -25,7 +25,6 @@
   flex-direction: column;
   
   .selector {
-    background: #FFFFFF;
     border: 1px solid colors.$BORDER_2;
     border-radius: 10px;
     width: 100%;
@@ -36,7 +35,7 @@
 }
 
 .title {
-  color: colors.$SUB_TITLE;
+  color: colors.$FONT_GRAY;
   font-weight: 700;
   font-size: 12px; 
   margin-bottom: 13px;
@@ -51,24 +50,34 @@
       height: 60px;
       padding:20px 22px;
       border-radius: 10px;
+      color: colors.$FONT_BLACK;
       @include flexbox.flexbox(start,center);
+
       .categoryItemIcon {
         margin-right: 12px;
+        color: colors.$FONT_BLACK;
+      }
+    }
+
+    .isActive {
+      background:colors.$CATEGORY_BACKGROUND;
+      color: colors.$FONT_PURPLE;
+      .categoryItemIcon {
+        color: colors.$FONT_PURPLE;
       }
     }
   }
-
 }
 
 .guide {
   height: 100px;
-  background: #E5F4FD;
+  background: colors.$BLUE_1;
   border-radius: 10px;
   padding-left: 20px;
   margin-bottom: 40px;
   @include flexbox.flexbox(start,center);
   .guideIcon {
-    background: #586CF5;
+    background: colors.$FONT_PURPLE;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -79,12 +88,12 @@
   .guideText {
     .guideTextTitle {
       font-weight: 700;
-      color: #3A474E;
+      color: colors.$FONT_BLACK;
       margin-bottom: 7px;
     }
     .guideTextBody {
       font-size: 12px;
-      color: colors.$SUB_TITLE;
+      color: colors.$FONT_GRAY;
     }
   }
 }
@@ -92,7 +101,7 @@
 .footer {
   padding:0 20px;
   font-size: 12px;
-  color: colors.$SUB_TITLE;
+  color: colors.$FONT_GRAY;
   .footerText {
     margin-bottom: 10px;
   }
@@ -117,6 +126,7 @@
   .icon {
     width:22px;
     margin-right: 42px;
+    cursor: pointer;
   }
 
   .profile {
@@ -126,6 +136,7 @@
     border: 1px solid colors.$BORDER_2;
     border-radius: 50px;
     margin-right: 10px;
+    cursor: pointer;
     @include flexbox.flexbox(center, center);
     .profileIcon {
       width: 20px;
@@ -133,6 +144,6 @@
   }
 
   .profileName {
-    color: #3A474E;
+    color: colors.$FONT_BLACK;
   }
 }

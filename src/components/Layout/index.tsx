@@ -1,6 +1,7 @@
 import styles from './layout.module.scss';
 import { Logo, ArrowDown, Dashboard, Profile, Ad, Guide, Alarm, Setting } from '../../assets/index';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
+import cx from 'classnames';
 
 const Layout = () => {
   return (
@@ -21,18 +22,21 @@ const Layout = () => {
         <div className={styles.addCenter}>
           <p className={styles.title}>광고센터</p>
           <ul className={styles.category}>
-            <li className={styles.categoryItem}>
+            <NavLink className={({ isActive }) => cx(styles.categoryItem, { [styles.isActive]: isActive })} to='/'>
               <span className={styles.categoryItemIcon}>
                 <Dashboard />
               </span>
               대시보드
-            </li>
-            <li className={styles.categoryItem}>
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => cx(styles.categoryItem, { [styles.isActive]: isActive })}
+              to='/manage'
+            >
               <span className={styles.categoryItemIcon}>
                 <Ad />
               </span>
               광고관리
-            </li>
+            </NavLink>
           </ul>
         </div>
         <div className={styles.guide}>
