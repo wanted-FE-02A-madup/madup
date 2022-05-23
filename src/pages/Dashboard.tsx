@@ -1,10 +1,10 @@
 import React from 'react';
-import MideaTable from '../components/MideaTable/MideaTable';
+import MediaTable from '../components/MediaTable/MediaTable';
 
 const Dashboard = () => {
   return (
     <div>
-      <MideaTable />
+      <MediaTable />
     </div>
   );
 };

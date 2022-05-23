@@ -11,15 +11,9 @@ const googleCost = googleChannel.reduce((prev, cur) => prev + cur.cost, 0);
 const naverCost = naverChannel.reduce((prev, cur) => prev + cur.cost, 0);
 
 // 매출
-const facebookSales = facebookChannel.reduce((prev, cur) => {
-  return prev + (cur.roas * cur.cost) / 100;
-}, 0);
-const googleSales = googleChannel.reduce((prev, cur) => {
-  return prev + (cur.roas * cur.cost) / 100;
-}, 0);
-const naverSales = naverChannel.reduce((prev, cur) => {
-  return prev + (cur.roas * cur.cost) / 100;
-}, 0);
+const facebookSales = facebookChannel.reduce((prev, cur) => prev + (cur.roas * cur.cost) / 100, 0);
+const googleSales = googleChannel.reduce((prev, cur) => prev + (cur.roas * cur.cost) / 100, 0);
+const naverSales = naverChannel.reduce((prev, cur) => prev + (cur.roas * cur.cost) / 100, 0);
 
 // ROAS
 const facebookROAS = facebookChannel.reduce((prev, cur) => prev + cur.roas, 0);
@@ -69,6 +63,7 @@ export {
   googleCPC,
   naverCPC,
 };
+
 const sumCost = facebookCost + googleCost + naverCost;
 const sumSales = facebookSales + googleSales + naverSales;
 const sumROAS = facebookROAS + googleROAS + naverROAS;

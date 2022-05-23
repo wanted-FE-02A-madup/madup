@@ -19,6 +19,10 @@
 
     .line {
       border-bottom: 1px solid colors.$GRAY300;
+
+      .total {
+        color: colors.$PRIMARY;
+      }
     }
 
     th,
