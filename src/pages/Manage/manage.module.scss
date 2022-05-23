@@ -1,0 +1,19 @@
+@use '../../styles/constants/colors';
+@use '../../styles/mixins/flexbox';
+
+.manageWrap {
+  h2 {
+    margin-bottom: 55px;
+    font-size: 26px;
+    font-weight: 900;
+  }
+
+  .manageHeader {
+    @include flexbox.flexbox(between, center);
+    margin-bottom: 40px;
+  }
+
+  .manageContents {
+    width: 1030px;
+  }
+}

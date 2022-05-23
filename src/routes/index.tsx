@@ -4,7 +4,7 @@ import Header from '../components/Header/Header';
 import Layout from '../components/Layout';
 
 import Dashboard from '../pages/Dashboard';
-import Manage from '../pages/Manage';
+import Manage from '../pages/Manage/Manage';
 
 import styles from './routes.module.scss';
 

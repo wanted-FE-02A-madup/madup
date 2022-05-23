@@ -1,0 +1,45 @@
+@use '../../styles/constants/colors';
+
+.manageItemWrap {
+  width: 305px;
+  height: 420px;
+  padding: 40px 20px 20px;
+  border: 1px solid colors.$GRAY100;
+  border-radius: 10px;
+
+  h3 {
+    margin-bottom: 40px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-top: 1px solid colors.$GRAY50;
+
+    tr {
+      padding: 13px 0;
+      border-bottom: 1px solid colors.$GRAY50;
+
+      th,
+      td {
+        padding: 13px 0;
+        font-size: 12px;
+      }
+
+      th {
+        width: 40%;
+        font-weight: 500;
+        color: colors.$GRAY300;
+        text-align: left;
+      }
+
+      td {
+        width: 60%;
+        font-weight: 700;
+        color: colors.$GRAY800;
+      }
+    }
+  }
+}

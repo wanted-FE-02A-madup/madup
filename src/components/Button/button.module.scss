@@ -1,0 +1,9 @@
+@use '../../styles/constants/colors';
+
+.button {
+  width: 92px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid colors.$GRAY100;
+  border-radius: 10px;
+}
