@@ -1,19 +1,29 @@
 import { VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
+import { useRecoilValue } from 'recoil';
 import { ScalePropType } from 'victory-core';
 
-import { ChartDataItem } from 'types/trend';
-import TRAND_DATA from '../../../data/wanted_FE_trend-data-set.json';
-console.log(TRAND_DATA);
-
+// import { ITrend } from '../types/trend';
 import { COLORS } from './chartColorOption';
 
 import SelectBox from '../../SelectBox/SelectBox';
 
 import styles from './lineChart.module.scss';
+import { startDayState, endDayState } from '../../../recoil/recoil';
+import trandDataFilter from '../../../utils/trandDataFilter';
+
+const chartCategory = ['ROAS', '광고비', '노출수', '클릭수', '전환수', '매출'];
+const termCategory = ['주간', '일간'];
+
+const dateRangeFunc = (paramDate: Date): string => {
+  return `${paramDate.getFullYear()}-${paramDate.getMonth()}-${paramDate.getDate()}`;
+};
 
 const LineChart = () => {
-  const chartCategory = ['ROAS', '광고비', '노출수', '클릭수', '전환수', '매출'];
-  const termCategory = ['주간', '일간'];
+  const startDate = dateRangeFunc(useRecoilValue(startDayState));
+  const endDate = dateRangeFunc(useRecoilValue(endDayState));
+  const data = trandDataFilter(startDate, endDate);
+
+  const { imp, click, cost, conv, convValue, ctr, cvr, cpc, cpa, roas, date } = convertData(data as ChartDataItem[]);
 
   const options = {
     width: 1194,
@@ -35,8 +45,8 @@ const LineChart = () => {
         </div>
         <SelectBox option={termCategory} />
       </div>
-      {/* <div className={styles.graph}>
-        <section className={styles.chart}>
+      <div className={styles.graph}>
+        {/* <section className={styles.chart}>
           <div className={styles.centering}>
             <VictoryChart
               theme={VictoryTheme.material}
@@ -69,58 +79,10 @@ const LineChart = () => {
                 }}
                 data={critical}
               />
-              <VictoryLine
-                name='death'
-                animate={{
-                  duration: 2000,
-                  onLoad: { duration: 1500 },
-                }}
-                style={{
-                  data: { stroke: COLORS.RED },
-                  parent: { border: '1px solid #ccc' },
-                }}
-                data={death}
-              />
-              <VictoryLine
-                name='negative'
-                animate={{
-                  duration: 2000,
-                  onLoad: { duration: 500 },
-                }}
-                style={{
-                  data: { stroke: COLORS.BLUE },
-                  parent: { border: '1px solid #ccc' },
-                }}
-                data={negative}
-              />
-              <VictoryLine
-                name='released'
-                animate={{
-                  duration: 2000,
-                  onLoad: { duration: 500 },
-                }}
-                style={{
-                  data: { stroke: COLORS.GREEN },
-                  parent: { border: '1px solid #ccc' },
-                }}
-                data={released}
-              />
-              <VictoryLine
-                name='tested'
-                animate={{
-                  duration: 2000,
-                  onLoad: { duration: 500 },
-                }}
-                style={{
-                  data: { stroke: COLORS.TEAL },
-                  parent: { border: '1px solid #ccc' },
-                }}
-                data={tested}
-              />
             </VictoryChart>
           </div>
-        </section>
-      </div> */}
+        </section> */}
+      </div>
     </div>
   );
 };

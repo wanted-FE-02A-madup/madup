@@ -1,11 +1,13 @@
 import { cx } from '../../../styles';
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 import Calendar from 'react-calendar';
 
 import { ArrowDown } from '../../../assets/index';
 import 'react-calendar/dist/Calendar.css';
 import styles from './datePicker.module.scss';
+import { endDayState, startDayState } from '../../../recoil/recoil';
 
 const dateLange = [new Date(2022, 2, 1), new Date(2022, 3, 20)];
 
@@ -14,10 +16,11 @@ const dateRangeFunc = (paramDate: Date): String => {
 };
 
 const DatePicker = () => {
-  const [startDate, setStartDate] = useState(new Date(2022, 2, 1));
-  const [endDate, setEndDate] = useState(new Date(2022, 2, 7));
+  const [startDate, setStartDate] = useRecoilState(startDayState);
+  const [endDate, setEndDate] = useRecoilState(endDayState);
 
   const [calendar, setCalendar] = useState(false);
+
   const handleCalendarToggle = () => {
     setCalendar(!calendar);
   };
