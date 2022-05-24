@@ -1,9 +1,10 @@
-import React from 'react';
+import TrendReport from '../components/TrendReport';
 
 const Dashboard = () => {
   return (
     <div>
-      <p>Dashboard</p>
+      <p>통합 광고 현황</p>
+      <TrendReport />
     </div>
   );
 };
