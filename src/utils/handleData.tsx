@@ -1,16 +1,17 @@
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
-import TREND_DATA from '../data/wanted_FE_trend-data-set.json';
+import { ITrendData } from '../types/trend';
+import _ from 'lodash';
 
-export default function handleData(date1: string, date2: string) {
+export default function handleData(date1: Date, date2: Date, dataSet: ITrendData) {
   dayjs.extend(isBetween);
   const startDate = dayjs(date1).subtract(1, 'd');
-  const endDate = dayjs(date2).add(1, 'd');
-  const period = endDate.diff(startDate, 'd') - 1;
+  const endDate = dayjs(date2);
+  const period = endDate.diff(startDate, 'd');
   const pastStartDate = startDate.subtract(period, 'd');
   const pastEndDate = startDate.add(1, 'd');
 
-  const DAILY_TREND_DATA = TREND_DATA.report.daily;
+  const DAILY_TREND_DATA = dataSet.report.daily;
 
   const filteredData = DAILY_TREND_DATA.filter((data) => dayjs(data.date).isBetween(startDate, endDate));
   const pastData = DAILY_TREND_DATA.filter((data) => dayjs(data.date).isBetween(pastStartDate, pastEndDate));
@@ -24,32 +25,18 @@ export default function handleData(date1: string, date2: string) {
     { value: 0, category: '매출' },
   ];
 
-  const prevDataStructure = [
-    { value: 0, category: 'ROAS' },
-    { value: 0, category: '광고비' },
-    { value: 0, category: '노출 수' },
-    { value: 0, category: '클릭 수' },
-    { value: 0, category: '전환 수' },
-    { value: 0, category: '매출' },
-  ];
-
-  const diff = [
-    { value: 0, category: 'ROAS' },
-    { value: 0, category: '광고비' },
-    { value: 0, category: '노출 수' },
-    { value: 0, category: '클릭 수' },
-    { value: 0, category: '전환 수' },
-    { value: 0, category: '매출' },
-  ];
+  const currentDataStructure = _.cloneDeep(dataStructure);
+  const prevDataStructure = _.cloneDeep(dataStructure);
+  const diff = _.cloneDeep(dataStructure);
 
   filteredData.forEach((d) => {
-    dataStructure.find((item) => item.category === '광고비')!.value += d.cost;
-    dataStructure.find((item) => item.category === '노출 수')!.value += d.imp;
-    dataStructure.find((item) => item.category === '클릭 수')!.value += d.click;
-    dataStructure.find((item) => item.category === '전환 수')!.value += d.conv;
-    dataStructure.find((item) => item.category === '매출')!.value += (d.roas * d.cost) / 100;
+    currentDataStructure.find((item) => item.category === '광고비')!.value += d.cost;
+    currentDataStructure.find((item) => item.category === '노출 수')!.value += d.imp;
+    currentDataStructure.find((item) => item.category === '클릭 수')!.value += d.click;
+    currentDataStructure.find((item) => item.category === '전환 수')!.value += d.conv;
+    currentDataStructure.find((item) => item.category === '매출')!.value += (d.roas * d.cost) / 100;
   });
-  dataStructure[0].value = (dataStructure[5].value / dataStructure[1].value) * 100;
+  currentDataStructure[0].value = (currentDataStructure[5].value / currentDataStructure[1].value) * 100;
 
   pastData.forEach((d) => {
     prevDataStructure.find((item) => item.category === '광고비')!.value += d.cost;
@@ -60,12 +47,10 @@ export default function handleData(date1: string, date2: string) {
   });
   prevDataStructure[0].value = (prevDataStructure[5].value / prevDataStructure[1].value) * 100;
 
-  diff[0].value = dataStructure[0].value - prevDataStructure[0].value;
-  diff[1].value = dataStructure[1].value - prevDataStructure[1].value;
-  diff[2].value = dataStructure[2].value - prevDataStructure[2].value;
-  diff[3].value = dataStructure[3].value - prevDataStructure[3].value;
-  diff[4].value = dataStructure[4].value - prevDataStructure[4].value;
-  diff[5].value = dataStructure[5].value - prevDataStructure[5].value;
+  diff[0].value = ((currentDataStructure[0].value - prevDataStructure[0].value) / prevDataStructure[0].value) * 100;
+  for (let i = 1; i < 6; i += 1) {
+    diff[i].value = currentDataStructure[i].value - prevDataStructure[i].value;
+  }
 
-  return { dataStructure, prevDataStructure, diff };
+  return { currentDataStructure, prevDataStructure, diff };
 }

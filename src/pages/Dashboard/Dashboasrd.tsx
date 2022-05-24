@@ -4,7 +4,7 @@ import MediaTable from '../../components/DashBoard/MediaTable/MediaTable';
 import ContentsContainer from '../../components/ContentsContainer/ContentsContainer';
 import { useFetchData } from '../../hooks/useFetchData';
 import MEDIA_DATA from '../../data/wanted_FE-media-channel-data-set.json';
-import TrendReport from '../../components/DashBoard/TrendReport';
+import TrendReport from '../../components/DashBoard/TrendReport/trendReport';
 import HeaderTitle from '../../components/HeaderTitle/HeaderTitle';
 import Aa from '../../components/DashBoard/AA/Aa';
 
