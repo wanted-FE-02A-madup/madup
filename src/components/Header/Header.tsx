@@ -4,7 +4,7 @@ import { Profile, Alarm, Setting } from '../../assets/index';
 const Header = () => {
   return (
     <header className={styles.header}>
-      <span className={styles.icon}>
+      <span className={`${styles.icon} ${styles.alarm}`}>
         <Alarm />
       </span>
       <span className={styles.icon}>
