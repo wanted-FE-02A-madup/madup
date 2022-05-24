@@ -1,8 +1,6 @@
 import { VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
 import { useRecoilValue } from 'recoil';
 import { ScalePropType } from 'victory-core';
-
-// import { ITrend } from '../types/trend';
 import { COLORS } from './chartColorOption';
 
 import SelectBox from '../../SelectBox/SelectBox';
@@ -10,6 +8,7 @@ import SelectBox from '../../SelectBox/SelectBox';
 import styles from './lineChart.module.scss';
 import { startDayState, endDayState } from '../../../recoil/recoil';
 import trandDataFilter from '../../../utils/trandDataFilter';
+import { ITrend } from '../../../types/trend';
 
 const chartCategory = ['ROAS', '광고비', '노출수', '클릭수', '전환수', '매출'];
 const termCategory = ['주간', '일간'];
@@ -23,7 +22,7 @@ const LineChart = () => {
   const endDate = dateRangeFunc(useRecoilValue(endDayState));
   const data = trandDataFilter(startDate, endDate);
 
-  const { imp, click, cost, conv, convValue, ctr, cvr, cpc, cpa, roas, date } = convertData(data as ChartDataItem[]);
+  const { imp, click, cost, conv, convValue, ctr, cvr, cpc, cpa, roas, date } = convertData(data as ITrend[]);
 
   const options = {
     width: 1194,

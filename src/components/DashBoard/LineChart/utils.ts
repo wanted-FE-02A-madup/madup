@@ -1,4 +1,4 @@
-import { ITrend } from '../types/trend';
+import { ITrend } from '../../../types/trend';
 
 type Data = {
   x: Date;
