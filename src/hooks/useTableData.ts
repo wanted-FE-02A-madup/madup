@@ -18,5 +18,12 @@ export const useTableData = (array: IMidea[], channel: string) => {
   const ctr = Math.floor(ctrNum);
   const cpc = Math.floor(cpcNum);
 
-  return { cost, sales, roas, imp, click, ctr, cpc };
+  const channelValue = {
+    facebook: '페이스북',
+    naver: '네이버',
+    google: '구글',
+    kakao: '카카오',
+  }[channel];
+
+  return { cost, sales, roas, imp, click, ctr, cpc, channelValue };
 };
