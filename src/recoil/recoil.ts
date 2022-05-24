@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const optionTitleState = atom<string[]>({
+export const optionTitleState = atom<string>({
   key: 'optionTitleState',
-  default: ['전체 광고'],
+  default: '전체 광고',
 });

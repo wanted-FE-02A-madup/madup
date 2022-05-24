@@ -12,8 +12,8 @@ const Manage = () => {
 
   const optionTitle = useRecoilValue(optionTitleState);
 
-  const a = ADLIST.ads.filter((item) => item.status === 'active');
-  const b = ADLIST.ads.filter((item) => item.status === 'ended');
+  const activeItem = ADLIST.ads.filter((item) => item.status === 'active');
+  const endedItem = ADLIST.ads.filter((item) => item.status === 'ended');
 
   return (
     <section className={styles.manageWrap}>
