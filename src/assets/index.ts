@@ -10,3 +10,6 @@ export { ReactComponent as ArrowDown } from './arrow_down.svg';
 export { ReactComponent as Setting } from './setting.svg';
 export { ReactComponent as Alarm } from './alarm.svg';
 export { ReactComponent as Profile } from './profile.svg';
+
+export { ReactComponent as DecIcon } from './decrease_icon.svg';
+export { ReactComponent as IncIcon } from './increase_icon.svg';
