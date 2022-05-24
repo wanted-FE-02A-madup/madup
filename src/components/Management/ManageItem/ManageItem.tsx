@@ -1,3 +1,4 @@
+import { useUnitCutData } from '../../../hooks/useUnitCutData';
 import { IAdListItem } from '../../../types/adList';
 import Button from '../../Button/Button';
 import styles from './manageItem.module.scss';
@@ -8,18 +9,12 @@ interface IProps {
 
 const ManageItem = ({ item }: IProps) => {
   const startData = item.startDate.split('T')[0];
-  const budget = Math.floor(item.budget / 10000)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const endDate = item.endDate && item.endDate.split('T')[0];
 
+  const budget = useUnitCutData(Math.floor(item.budget / 10000));
   const sales = Math.floor((item.report.roas * item.report.cost) / 100);
-  const salesConv = Math.floor(sales / 10000)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  const cost = Math.floor(item.report.cost / 10000)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const salesConv = useUnitCutData(Math.floor(sales / 10000));
+  const cost = useUnitCutData(Math.floor(item.report.cost / 10000));
 
   return (
     <div className={styles.manageItemWrap}>
@@ -35,12 +30,12 @@ const ManageItem = ({ item }: IProps) => {
           <tr>
             <th>광고 생성일</th>
             <td>
-              {startData} {item.endDate !== null && startData}
+              {startData} {endDate !== null && `(${endDate})`}
             </td>
           </tr>
           <tr>
             <th>일 희망 예산</th>
-            <td>{`${budget}만원`}</td>
+            <td>{budget}</td>
           </tr>
           <tr>
             <th>광고 수익률</th>
@@ -48,11 +43,11 @@ const ManageItem = ({ item }: IProps) => {
           </tr>
           <tr>
             <th>매출</th>
-            <td>{`${salesConv}만원`}</td>
+            <td>{salesConv}</td>
           </tr>
           <tr>
             <th>광고 비용</th>
-            <td>{`${cost}만원`}</td>
+            <td>{cost}</td>
           </tr>
         </tbody>
       </table>
