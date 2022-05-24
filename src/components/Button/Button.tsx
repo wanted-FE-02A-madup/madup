@@ -2,12 +2,12 @@ import styles from './button.module.scss';
 
 interface IProps {
   children: string;
-  createBtn?: string;
+  createButton?: string;
 }
-const Button = ({ children, createBtn }: IProps) => {
-  const a = createBtn ? 'aa' : '';
+const Button = ({ children, createButton }: IProps) => {
+  const createBtn = createButton ? `${styles.createBtn}` : '';
   return (
-    <button type='button' className={`${styles.button} ${a}`}>
+    <button type='button' className={`${styles.button} ${createBtn}`}>
       {children}
     </button>
   );
