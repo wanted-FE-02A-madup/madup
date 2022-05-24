@@ -6,7 +6,7 @@ import { useFetchData } from '../../hooks/useFetchData';
 import MEDIA_DATA from '../../data/wanted_FE-media-channel-data-set.json';
 import TrendReport from '../../components/DashBoard/TrendReport';
 import HeaderTitle from '../../components/HeaderTitle/HeaderTitle';
-import Aa from '../../components/DashBoard/AA/Aa';
+import LineChart from '../../components/DashBoard/LineChart/LineChart';
 
 const Dashboard = () => {
   const fetchData = useFetchData(MEDIA_DATA);
@@ -15,7 +15,7 @@ const Dashboard = () => {
       <HeaderTitle isDate title='대시보드' />
       <ContentsContainer title='통합 광고 현황'>
         <TrendReport />
-        <Aa />
+        <LineChart />
       </ContentsContainer>
       <ContentsContainer title='매체 현황'>
         {fetchData.length !== 0 ? (
