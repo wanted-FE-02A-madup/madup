@@ -1,5 +1,4 @@
 @use '/src/styles/constants/colors';
-// @import url('/src/styles/base/_fonts.scss');
 
 .top {
   position: relative;
@@ -7,10 +6,9 @@
   align-items: center;
   justify-content: space-between;
   height: 80px;
-  // padding-bottom: 25px;
+  margin-bottom: 20px;
 
   h2 {
-    margin-bottom: 55px;
     font-family: Roboto, sans-serif, Inter, Arial, PingFangSC-Regular, 'Microsoft YaHei';
     font-size: 26px;
     font-weight: 900;
