@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { IAdListItem } from '../types/adList';
 import { IMidea } from '../types/midea';
-import { IAdListItem } from '../types/type';
 
 let interval: NodeJS.Timeout;
 type jsonFile = IMidea | IAdListItem;
