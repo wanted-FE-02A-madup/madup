@@ -1,0 +1,23 @@
+.datePicker {
+  button {
+    padding: 10px;
+
+    .arrow {
+      margin-left: 16px;
+
+      &.reverse {
+        transform: scale(-1);
+      }
+    }
+  }
+
+  .calendar {
+    position: absolute;
+    right: 0;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+}

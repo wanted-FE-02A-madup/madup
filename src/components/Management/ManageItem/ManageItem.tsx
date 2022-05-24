@@ -1,5 +1,5 @@
-import { IAdListItem } from '../../types/adList';
-import Button from '../Button/Button';
+import { IAdListItem } from '../../../types/adList';
+import Button from '../../Button/Button';
 import styles from './manageItem.module.scss';
 
 interface IProps {

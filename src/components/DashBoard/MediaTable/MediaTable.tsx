@@ -1,8 +1,8 @@
 import styles from './mediaTable.module.scss';
-import ContentsContainer from '../ContentsContainer/ContentsContainer';
-import { useFetchData } from '../../hooks/useFetchData';
-import MEDIA_DATA from '../../data/wanted_FE-media-channel-data-set.json';
-import { useTableData } from '../../hooks/useTableData';
+import ContentsContainer from '../../ContentsContainer/ContentsContainer';
+import { useFetchData } from '../../../hooks/useFetchData';
+import MEDIA_DATA from '../../../data/wanted_FE-media-channel-data-set.json';
+import { useTableData } from '../../../hooks/useTableData';
 
 const MediaTable = () => {
   const facebookData = useTableData(MEDIA_DATA, 'facebook');

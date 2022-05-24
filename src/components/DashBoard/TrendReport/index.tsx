@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
-import { DecIcon, IncIcon } from '../../assets';
-import handleData from '../../utils/handleData';
-import numberToKorean from '../../utils/numberToKorean';
+import { DecIcon, IncIcon } from '../../../assets';
+import handleData from '../../../utils/handleData';
+import numberToKorean from '../../../utils/numberToKorean';
 import styles from './trendReport.module.scss';
 
 const TrendReport = () => {

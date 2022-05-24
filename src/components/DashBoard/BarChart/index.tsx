@@ -1,6 +1,6 @@
 import styles from './barChart.module.scss';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryStack, VictoryTheme } from 'victory';
-import * as Data from '../../utils/dataFilter';
+import * as Data from '../../../utils/dataFilter';
 
 const colorScale = ['#AC8AF8', '#85DA47', '#4FADF7', '#f9e000'];
 

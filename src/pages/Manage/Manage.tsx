@@ -1,11 +1,12 @@
 import Button from '../../components/Button/Button';
 import ContentsContainer from '../../components/ContentsContainer/ContentsContainer';
-import ManageItem from '../../components/ManageItem/ManageItem';
+import ManageItem from '../../components/Management/ManageItem/ManageItem';
 import styles from './manage.module.scss';
 import ADLIST from '../../data/wanted_FE_ad-list-data-set.json';
 import Select from '../../components/Select/Select';
 import { useRecoilValue } from 'recoil';
 import { optionTitleState } from '../../recoil/recoil';
+import HeaderTitle from '../../components/HeaderTitle/HeaderTitle';
 
 const Manage = () => {
   const ManagementCategory = ['전체 광고', '진행중인 광고', '중단된 광고'];
@@ -17,7 +18,7 @@ const Manage = () => {
 
   return (
     <section className={styles.manageWrap}>
-      <h2>광고관리</h2>
+      <HeaderTitle isDate={false} title='광고관리' />
       <ContentsContainer>
         <div className={styles.manageHeader}>
           <Select option={ManagementCategory} />

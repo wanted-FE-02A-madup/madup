@@ -1,4 +1,4 @@
-@use '../../styles/mixins/flexbox';
+@use '/src/styles/mixins/flexbox';
 
 .barChart {
   width: 100%;
@@ -9,42 +9,45 @@
   margin-top: 15px;
   margin-right: 55px;
   @include flexbox.flexbox(end, start);
-  
+
   .label {
+    position: relative;
     margin-left: 60px;
-    position:relative;
+
     &::before {
-      content: '';
-      transform: translateX(-20%);
-      border-radius: 50%;
       position: absolute;
-      bottom: 10px;
-      height: 12px;
-      width: 12px;
-      left: -25px;
       top: 20%;
+      bottom: 10px;
+      left: -25px;
+      width: 12px;
+      height: 12px;
+      content: '';
+      border-radius: 50%;
+      transform: translateX(-20%);
     }
 
     &:nth-child(1) {
       &::before {
-        background-color: #4FADF7;
+        background-color: #4fadf7;
       }
     }
+
     &:nth-child(2) {
       &::before {
-        background-color: #85DA47;
+        background-color: #85da47;
       }
     }
+
     &:nth-child(3) {
       &::before {
-        background-color: #AC8AF8;
+        background-color: #ac8af8;
       }
     }
+
     &:nth-child(4) {
       &::before {
         background-color: #f9e000;
       }
     }
-    
   }
 }

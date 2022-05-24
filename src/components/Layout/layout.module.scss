@@ -1,7 +1,7 @@
-@use '../../styles/mixins/flexbox';
+@use '/src/styles/mixins/flexbox';
 
 .main {
   width: 100%;
-  padding: 25px 0;
+  padding-bottom: 25px;
   background: #f6f7f8;
 }
