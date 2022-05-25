@@ -7,9 +7,10 @@ import styles from './dropdown.module.scss';
 interface IProps {
   option: Array<string>;
   title: string;
+  color?: String;
   onClick: (value: string) => void;
 }
-const Dropdown = ({ option, title, onClick }: IProps) => {
+const Dropdown = ({ option, title, color, onClick }: IProps) => {
   const asideTitle = useRecoilValue(asideState);
   const advertisingStatusTitle = useRecoilValue(advertisingStatusState);
   const [isopenDropDown, setIsopenDropDown] = useState(false);
@@ -45,7 +46,7 @@ const Dropdown = ({ option, title, onClick }: IProps) => {
 
   return (
     <div className={`${styles.dropdown} ${asideDropDown} ${advertisingStatusDropDown}`} ref={dropDownRef}>
-      <button type='button' onClick={handleShowDropDown}>
+      <button type='button' data-color={color} onClick={handleShowDropDown}>
         {title}
         <ArrowDown />
       </button>

@@ -4,8 +4,6 @@ import { ScalePropType } from 'victory-core';
 import { COLORS } from './chartColorOption';
 import { convertData, Data } from './utils';
 
-import SelectBox from '../../SelectBox/SelectBox';
-
 import styles from './lineChart.module.scss';
 import {
   startDayState,
@@ -117,8 +115,8 @@ const LineChart = () => {
     <div className={styles.lineChart}>
       <div className={styles.top}>
         <div className={styles.buttonWrap}>
-          <SelectBox option={baseDropdown} title={category1} color='blue' onClick={setCategory1} />
-          <SelectBox option={optionDropdown} title={category2} color='green' onClick={setCategory2} />
+          <Dropdown option={baseDropdown} title={category1} color='blue' onClick={setCategory1} />
+          <Dropdown option={optionDropdown} title={category2} color='green' onClick={setCategory2} />
         </div>
         <Dropdown option={termCategory} title={advertisingStatusTitle} onClick={setAdvertisingStatusTitle} />
       </div>
