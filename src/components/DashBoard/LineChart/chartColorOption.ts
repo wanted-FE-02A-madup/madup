@@ -14,4 +14,6 @@ export const COLORS = {
   INDIGO: '#5856d6',
   PURPLE: '#af52de',
   PINK: '#ff2d55',
+  SKYBLUE: '#4fadf7',
+  LIGHTGREEN: '#85da47',
 };

@@ -1,9 +1,17 @@
 import { ITrend } from '../../../types/trend';
 
 type Data = {
-  x: Date;
+  x: string;
   y: number;
 };
+
+// const parseDate = (rawStr: number) => {
+//   const str = rawStr.toString();
+//   const y = Number(str.substring(0, 4));
+//   const m = Number(str.substring(4, 6)) - 1;
+//   const d = Number(str.substring(6, 8));
+//   return new Date(y, m, d);
+// };
 
 export const convertData = (data: ITrend[]) => {
   const imp: Data[] = [];
@@ -16,41 +24,62 @@ export const convertData = (data: ITrend[]) => {
   const cpc: Data[] = [];
   const cpa: Data[] = [];
   const roas: Data[] = [];
-  const date: Data[] = [];
+
+  console.log(data);
 
   data.forEach((d) => {
-    confirmed.push({
-      x: parseDate(d.date),
-      y: d.confirmed,
-    })
-    critical.push({
-      x: parseDate(d.date),
-      y: d.critical,
-    })
-    death.push({
-      x: parseDate(d.date),
-      y: d.death,
-    })
-    negative.push({
-      x: parseDate(d.date),
-      y: d.negative,
-    })
-    released.push({
-      x: parseDate(d.date),
-      y: d.released,
-    })
-    tested.push({
-      x: parseDate(d.date),
-      y: d.tested,
-    })
-  })
+    imp.push({
+      x: d.date,
+      y: d.imp,
+    });
+    click.push({
+      x: d.date,
+      y: d.click,
+    });
+    cost.push({
+      x: d.date,
+      y: d.cost,
+    });
+    conv.push({
+      x: d.date,
+      y: d.conv,
+    });
+    convValue.push({
+      x: d.date,
+      y: d.convValue,
+    });
+    ctr.push({
+      x: d.date,
+      y: d.ctr,
+    });
+    cvr.push({
+      x: d.date,
+      y: d.cvr,
+    });
+    cpc.push({
+      x: d.date,
+      y: d.cpc,
+    });
+    cpa.push({
+      x: d.date,
+      y: d.cpa,
+    });
+    roas.push({
+      x: d.date,
+      y: d.roas,
+    });
+  });
 
   return {
-    confirmed,
-    critical,
-    death,
-    negative,
-    released,
-    tested,
-  }
-}
+    imp,
+    click,
+    cost,
+    conv,
+    convValue,
+    ctr,
+    cvr,
+    cpc,
+    cpa,
+    roas,
+  };
+};

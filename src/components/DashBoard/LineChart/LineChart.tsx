@@ -1,12 +1,13 @@
-import { VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
-import { useRecoilValue } from 'recoil';
+import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { ScalePropType } from 'victory-core';
 import { COLORS } from './chartColorOption';
+import { convertData } from './utils';
 
 import SelectBox from '../../SelectBox/SelectBox';
 
 import styles from './lineChart.module.scss';
-import { startDayState, endDayState } from '../../../recoil/recoil';
+import { startDayState, endDayState, categoryState1, categoryState2 } from '../../../recoil/recoil';
 import trandDataFilter from '../../../utils/trandDataFilter';
 import { ITrend } from '../../../types/trend';
 
@@ -21,12 +22,14 @@ const LineChart = () => {
   const startDate = dateRangeFunc(useRecoilValue(startDayState));
   const endDate = dateRangeFunc(useRecoilValue(endDayState));
   const data = trandDataFilter(startDate, endDate);
+  const [category1, setCategory1] = useRecoilState(categoryState1);
+  const [category2, setCategory2] = useRecoilState(categoryState2);
 
-  const { imp, click, cost, conv, convValue, ctr, cvr, cpc, cpa, roas, date } = convertData(data as ITrend[]);
+  const { imp, click, cost, conv, convValue, ctr, cvr, cpc, cpa, roas } = convertData(data as ITrend[]);
 
   const options = {
-    width: 1194,
-    height: 320,
+    width: 900,
+    height: 240,
     padding: {
       left: 0,
       top: 0,
@@ -44,44 +47,68 @@ const LineChart = () => {
         </div>
         <SelectBox option={termCategory} />
       </div>
-      <div className={styles.graph}>
-        {/* <section className={styles.chart}>
-          <div className={styles.centering}>
-            <VictoryChart
-              theme={VictoryTheme.material}
-              containerComponent={
-                <VictoryVoronoiContainer
-                  voronoiDimension='x'
-                  labels={({ datum }) => `${datum.childName}: ${datum.y}`}
-                  labelComponent={<VictoryTooltip cornerRadius={0} flyoutStyle={{ fill: 'white' }} />}
-                />
-              }
-              {...options}
-            >
-              <VictoryLine
-                name='confirmed'
-                style={{
-                  data: { stroke: COLORS.YELLOW },
-                  parent: { border: '1px solid #ccc' },
-                }}
-                data={confirmed}
-              />
-              <VictoryLine
-                name='critical'
-                animate={{
-                  duration: 2000,
-                  onLoad: { duration: 1000 },
-                }}
-                style={{
-                  data: { stroke: COLORS.ORANGE },
-                  parent: { border: '1px solid #ccc' },
-                }}
-                data={critical}
-              />
-            </VictoryChart>
-          </div>
-        </section> */}
-      </div>
+      <section className={styles.chart}>
+        <VictoryChart
+          theme={VictoryTheme.material}
+          domainPadding={1}
+          containerComponent={
+            <VictoryVoronoiContainer
+              voronoiDimension='x'
+              labels={({ datum }) => `${datum.childName}: ${datum.y}`}
+              labelComponent={<VictoryTooltip cornerRadius={0} flyoutStyle={{ fill: 'white' }} />}
+            />
+          }
+          {...options}
+        >
+          {/* <VictoryAxis dependentAxis tickFormat={(x) => `$${x / 1000}k`} /> */}
+          <VictoryAxis
+            style={{
+              tickLabels: {
+                fill: '#94A2AD',
+                fontSize: 12,
+              },
+            }}
+          />
+          <VictoryAxis
+            style={{
+              axis: { stroke: 'transparent' },
+              tickLabels: {
+                fill: '#94A2AD',
+                fontSize: 12,
+                paddingTop: 20,
+              },
+              ticks: { stroke: 'transparent' },
+            }}
+            dependentAxis
+            tickFormat={(x) => `${x}%`}
+            tickValues={[21, 61, 101, 141, 181, 221]}
+          />
+          <VictoryLine
+            name='imp'
+            style={{
+              data: { stroke: COLORS.SKYBLUE },
+              parent: { border: '1px solid #ccc' },
+            }}
+            data={imp}
+            x='x'
+            y='y'
+          />
+          <VictoryLine
+            name='cost'
+            // animate={{
+            //   duration: 2000,
+            //   onLoad: { duration: 1000 },
+            // }}
+            style={{
+              data: { stroke: COLORS.LIGHTGREEN },
+              parent: { border: '1px solid #ccc' },
+            }}
+            data={cost}
+            x='x'
+            y='y'
+          />
+        </VictoryChart>
+      </section>
     </div>
   );
 };
