@@ -27,10 +27,10 @@ export const endDayState = atom<Date>({
 
 export const categoryState1 = atom<string>({
   key: 'categoryState1',
-  default: 'roas',
+  default: 'ROAS',
 });
 
 export const categoryState2 = atom<string>({
   key: 'categoryState2',
-  default: '',
+  default: '없음',
 });

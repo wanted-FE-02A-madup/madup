@@ -17,8 +17,22 @@ import {
 import trandDataFilter from '../../../utils/trandDataFilter';
 import { ITrend } from '../../../types/trend';
 import Dropdown from '../../Dropdown/Dropdown';
+import { useEffect } from 'react';
 
-const chartCategory = ['ROAS', '광고비', '노출수', '클릭수', '전환수', '매출'];
+interface IData {
+  name: string;
+  dataName: string;
+}
+
+const chartCategory: IData[] = [
+  { name: 'ROAS', dataName: 'roas' },
+  { name: '광고비', dataName: 'cost' },
+  { name: '노출수', dataName: 'imp' },
+  { name: '클릭수', dataName: 'click' },
+  { name: '전환수', dataName: 'conversions' },
+  { name: '매출', dataName: 'sales' },
+];
+
 const termCategory = ['주간', '일간'];
 
 const dateRangeFunc = (paramDate: Date): string => {
@@ -32,7 +46,16 @@ const LineChart = () => {
   const [category1, setCategory1] = useRecoilState(categoryState1);
   const [category2, setCategory2] = useRecoilState(categoryState2);
 
+  const baseDropdown = chartCategory.map((item) => item.name);
+  const optionDropdown = chartCategory.filter((item) => item.name !== category1).map((item) => item.name);
+
   const [advertisingStatusTitle, setAdvertisingStatusTitle] = useRecoilState(advertisingStatusState);
+
+  useEffect(() => {
+    if (category1 === category2) {
+      setCategory2('없음');
+    }
+  }, [category1, category2, setCategory2]);
 
   type Data = {
     x: string;
@@ -42,25 +65,25 @@ const LineChart = () => {
 
   const handleSelectedData = (category: string): Array<Data> => {
     let dataArr: Data[] = [];
-    if (category === 'roas') {
+
+    if (category === 'ROAS') {
       dataArr = roas;
     }
-    if (category === 'cost') {
+    if (category === '광고비') {
       dataArr = cost;
     }
-    if (category === 'imp') {
+    if (category === '노출수') {
       dataArr = imp;
     }
-    if (category === 'click') {
+    if (category === '클릭수') {
       dataArr = click;
     }
-    if (category === 'conversions') {
+    if (category === '전환수') {
       dataArr = conversions;
     }
-    if (category === 'sales') {
+    if (category === '매출') {
       dataArr = sales;
     }
-
     return dataArr;
   };
 
@@ -79,8 +102,8 @@ const LineChart = () => {
     <div className={styles.lineChart}>
       <div className={styles.top}>
         <div className={styles.buttonWrap}>
-          <SelectBox option={chartCategory} color='blue' />
-          <SelectBox option={chartCategory} color='green' />
+          <SelectBox option={baseDropdown} title={category1} color='blue' onClick={setCategory1} />
+          <SelectBox option={optionDropdown} title={category2} color='green' onClick={setCategory2} />
         </div>
         <Dropdown option={termCategory} title={advertisingStatusTitle} onClick={setAdvertisingStatusTitle} />
       </div>
