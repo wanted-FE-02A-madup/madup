@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import handleData from '../../../utils/handleData';
 import numberToPlaceValue from '../../../utils/numberToPlaceValue';
 
-import { endDateState, startDateState } from '../../../recoil/recoil';
+import { endDayState, startDayState } from '../../../recoil/recoil';
 
 import TREND_DATA from '../../../data/wanted_FE_trend-data-set.json';
 
@@ -12,8 +12,8 @@ import TrendReportItem from './TrendReportItem/trendReportItem';
 import styles from './trendReport.module.scss';
 
 const TrendReport = () => {
-  const startDate = useRecoilValue(startDateState);
-  const endDate = useRecoilValue(endDateState);
+  const startDate = useRecoilValue(startDayState);
+  const endDate = useRecoilValue(endDayState);
 
   const result = handleData(startDate, endDate, TREND_DATA);
 
