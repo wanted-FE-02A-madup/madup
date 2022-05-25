@@ -1,5 +1,3 @@
-import getNumber from './getNumber';
-
 export default function numberToPlaceValue(number: number) {
   const inputNumber = Math.abs(number);
   const unitWords = ['', '만', '억', '조', '경'];
@@ -8,7 +6,7 @@ export default function numberToPlaceValue(number: number) {
   const resultArray = [];
   let resultString = '';
 
-  if (inputNumber < 10_000) return getNumber(inputNumber);
+  if (inputNumber < 10_000) return inputNumber.toLocaleString();
   if (inputNumber < 100_000) return String((inputNumber / 10_000).toFixed(1)) + unitWords[1];
   if (inputNumber >= 100_000_000) {
     resultString = String((inputNumber / 100_000_000).toFixed(1)) + unitWords[2];
@@ -24,7 +22,7 @@ export default function numberToPlaceValue(number: number) {
   }
 
   for (let i = 0; i < resultArray.length; i += 1) {
-    if (resultArray[i]) resultString = String(getNumber(resultArray[i])) + unitWords[i] + resultString;
+    if (resultArray[i]) resultString = String(resultArray[i].toLocaleString()) + unitWords[i] + resultString;
   }
 
   return resultString;
