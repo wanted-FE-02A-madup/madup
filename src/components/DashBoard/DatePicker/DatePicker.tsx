@@ -27,7 +27,14 @@ const DatePicker = () => {
 
   const handleDate = (range: Array<Date>): void => {
     setStartDate(range[0]);
-    setEndDate(range[1]);
+    const rangeDiff = range[1].getDate() - range[0].getDate();
+    if (rangeDiff > 6 || range[0].getMonth() !== range[1].getMonth()) {
+      range[1].setDate(range[0].getDate() + 6);
+      range[1].setMonth(range[0].getMonth());
+      setEndDate(range[1]);
+    } else {
+      setEndDate(range[1]);
+    }
     setCalendar(!calendar);
   };
 
