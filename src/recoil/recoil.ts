@@ -1,8 +1,18 @@
 import { atom } from 'recoil';
 
-export const optionTitleState = atom<string>({
-  key: 'optionTitleState',
+export const manageState = atom<string>({
+  key: 'manageState',
   default: '전체 광고',
+});
+
+export const asideState = atom<string>({
+  key: 'asideState',
+  default: '매드업',
+});
+
+export const isopenDropDown = atom<boolean>({
+  key: 'isopenDropDown',
+  default: false,
 });
 
 export const startDayState = atom<Date>({

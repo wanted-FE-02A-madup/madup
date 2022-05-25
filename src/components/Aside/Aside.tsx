@@ -3,8 +3,12 @@ import { Logo, Dashboard, Ad, Guide } from '../../assets/index';
 import { NavLink } from 'react-router-dom';
 import { cx } from '../../styles';
 import Dropdown from '../Dropdown/Dropdown';
+import { useRecoilState } from 'recoil';
+import { asideState } from '../../recoil/recoil';
 
 const Aside = () => {
+  const [asideTitle, setAsideTitle] = useRecoilState(asideState);
+
   const asideCategory = ['매드업', '서비스 추가하기'];
   return (
     <aside className={styles.sidebar}>
@@ -13,7 +17,7 @@ const Aside = () => {
       </h1>
       <div className={styles.service}>
         <p className={styles.title}>서비스</p>
-        <Dropdown option={asideCategory} title='매드업' />
+        <Dropdown option={asideCategory} title={asideTitle} onClick={setAsideTitle} />
       </div>
       <div className={styles.addCenter}>
         <p className={styles.title}>광고센터</p>
