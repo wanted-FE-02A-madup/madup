@@ -14,7 +14,6 @@ import {
 import trandDataFilter from '../../../utils/trandDataFilter';
 import numberToPlaceValue from '../../../utils/numberToPlaceValue';
 import { convertData } from '../../../utils/lineChart';
-import { ITrend } from '../../../types/trend';
 import Dropdown from '../../../components/Dropdown/Dropdown';
 
 import styles from './lineChart.module.scss';
@@ -39,6 +38,18 @@ const dateRangeFunc = (paramDate: Date): string => {
   return `${paramDate.getFullYear()}-${paramDate.getMonth() + 1}-${paramDate.getDate()}`;
 };
 
+const options = {
+  width: 900,
+  height: 240,
+  padding: {
+    left: 80,
+    top: 40,
+    right: 80,
+    bottom: 30,
+  },
+  scale: { x: 'time' as ScalePropType },
+};
+
 const LineChart = () => {
   const startDate = dateRangeFunc(useRecoilValue(startDayState));
   const endDate = dateRangeFunc(useRecoilValue(endDayState));
@@ -57,38 +68,24 @@ const LineChart = () => {
     }
   }, [category1, category2, setCategory2]);
 
-  type Data = {
-    x: string;
-    y: number;
-  };
-  const { roas, cost, imp, click, conversions, sales } = convertData(data as ITrend[]);
+  const { roas, cost, imp, click, conversions, sales } = convertData(data);
 
-  const handleSelectedData = (category: string): Array<Data> => {
-    let dataArr: Data[] = [];
+  const handleSelectedData = (category: string) => {
+    const selectDataValue = {
+      ROAS: roas,
+      광고비: cost,
+      노출수: imp,
+      클릭수: click,
+      전환수: conversions,
+      매출: sales,
+      없음: [],
+    }[category];
 
-    if (category === 'ROAS') {
-      dataArr = roas;
-    }
-    if (category === '광고비') {
-      dataArr = cost;
-    }
-    if (category === '노출수') {
-      dataArr = imp;
-    }
-    if (category === '클릭수') {
-      dataArr = click;
-    }
-    if (category === '전환수') {
-      dataArr = conversions;
-    }
-    if (category === '매출') {
-      dataArr = sales;
-    }
-    return dataArr;
+    const maxValue = selectDataValue && Math.max(...selectDataValue!.map((item) => item.y));
+    return { selectDataValue, maxValue };
   };
 
-  const dataFormat = (t: number, orientation: string) => {
-    const orien = orientation === 'left' ? category1 : category2;
+  const dataFormat = (t: number, category: string) => {
     const formatValue = {
       ROAS: '%',
       광고비: '원',
@@ -97,7 +94,7 @@ const LineChart = () => {
       전환수: '회',
       매출: '원',
       없음: '',
-    }[orien];
+    }[category];
     return `${numberToPlaceValue(Math.round(t))}${formatValue}`;
   };
 
@@ -108,17 +105,6 @@ const LineChart = () => {
     newDateFormat.push(`${sliceDate[1]}월 ${sliceDate[2]}일`);
   });
 
-  const options = {
-    width: 900,
-    height: 240,
-    padding: {
-      left: 80,
-      top: 40,
-      right: 80,
-      bottom: 30,
-    },
-    scale: { x: 'time' as ScalePropType },
-  };
   return (
     <div className={styles.lineChart}>
       <div className={styles.top}>
@@ -130,6 +116,7 @@ const LineChart = () => {
       </div>
       <section className={styles.chart}>
         <VictoryChart
+          domain={{ y: [0, 1] }}
           theme={VictoryTheme.material}
           containerComponent={
             <VictoryVoronoiContainer
@@ -143,7 +130,6 @@ const LineChart = () => {
           <VictoryAxis
             style={{
               axis: { stroke: 'transparent' },
-              grid: { stroke: 'transparent' },
               tickLabels: {
                 fill: '#94A2AD',
                 fontSize: 12,
@@ -154,23 +140,6 @@ const LineChart = () => {
             tickValues={tickVal}
             tickFormat={newDateFormat}
           />
-          {category2 !== '없음' && (
-            <VictoryAxis
-              dependentAxis
-              orientation='right'
-              style={{
-                axis: { stroke: 'transparent' },
-                tickLabels: {
-                  fill: '#94A2AD',
-                  fontSize: 12,
-                  paddingTop: 20,
-                },
-                ticks: { stroke: 'transparent' },
-              }}
-              tickCount={6}
-              tickFormat={(t) => dataFormat(t, 'right')}
-            />
-          )}
 
           <VictoryAxis
             dependentAxis
@@ -184,16 +153,35 @@ const LineChart = () => {
               },
               ticks: { stroke: 'transparent' },
             }}
-            tickCount={6}
-            tickFormat={(t) => dataFormat(t, 'left')}
+            tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
+            tickFormat={(t) => dataFormat(t * handleSelectedData(category1).maxValue!, category1)}
           />
+
+          {category2 !== '없음' && (
+            <VictoryAxis
+              dependentAxis
+              orientation='right'
+              style={{
+                axis: { stroke: 'transparent' },
+                tickLabels: {
+                  fill: '#94A2AD',
+                  fontSize: 12,
+                  paddingTop: 20,
+                },
+                ticks: { stroke: 'transparent' },
+              }}
+              tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
+              tickFormat={(t) => dataFormat(t * handleSelectedData(category2).maxValue!, category2)}
+            />
+          )}
 
           <VictoryLine
             style={{
               data: { stroke: COLORS.SKYBLUE },
               parent: { border: '1px solid #ccc' },
             }}
-            data={handleSelectedData(category1)}
+            data={handleSelectedData(category1).selectDataValue}
+            y={(datum) => datum.y / handleSelectedData(category1).maxValue!}
           />
 
           <VictoryLine
@@ -201,7 +189,8 @@ const LineChart = () => {
               data: { stroke: COLORS.LIGHTGREEN },
               parent: { border: '1px solid #ccc' },
             }}
-            data={handleSelectedData(category2)}
+            data={handleSelectedData(category2).selectDataValue}
+            y={(datum) => datum.y / handleSelectedData(category2).maxValue!}
           />
         </VictoryChart>
       </section>
