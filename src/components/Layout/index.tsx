@@ -1,12 +1,11 @@
-import styles from './layout.module.scss';
 import { Outlet } from 'react-router-dom';
+
+import styles from './layout.module.scss';
 
 const Layout = () => {
   return (
     <main className={styles.main}>
-      <div className={styles.page}>
-        <Outlet />
-      </div>
+      <Outlet />
     </main>
   );
 };

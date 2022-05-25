@@ -10,7 +10,7 @@ export const useFetchData = <T extends jsonFile>(jsonFile: T[]): T[] => {
   useEffect(() => {
     interval = setTimeout(() => {
       setData(jsonFile);
-    }, 3000);
+    }, 1000);
     return () => clearTimeout(interval);
   }, [jsonFile]);
   return data;

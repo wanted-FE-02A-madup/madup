@@ -2,6 +2,8 @@
 @use '/src/styles/mixins/flexbox';
 
 .manageWrap {
+  width: 100%;
+  height: 100%;
   h2 {
     font-size: 26px;
     font-weight: 900;

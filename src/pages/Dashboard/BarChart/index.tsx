@@ -1,7 +1,7 @@
-import styles from './barChart.module.scss';
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryStack, VictoryTheme, VictoryTooltip } from 'victory';
 import barChartData from '../../../utils/barChartData';
 
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryStack, VictoryTheme, VictoryTooltip } from 'victory';
+import styles from './barChart.module.scss';
 
 const colorScale = ['#AC8AF8', '#85DA47', '#f9e000', '#4FADF7'];
 

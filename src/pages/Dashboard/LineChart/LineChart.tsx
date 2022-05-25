@@ -1,10 +1,9 @@
+import { useEffect } from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { ScalePropType } from 'victory-core';
 import { COLORS } from './chartColorOption';
-import { convertData } from './utils';
 
-import styles from './lineChart.module.scss';
 import {
   startDayState,
   endDayState,
@@ -13,10 +12,12 @@ import {
   advertisingStatusState,
 } from '../../../recoil/recoil';
 import trandDataFilter from '../../../utils/trandDataFilter';
-import { ITrend } from '../../../types/trend';
-import Dropdown from '../../Dropdown/Dropdown';
-import { useEffect } from 'react';
 import numberToPlaceValue from '../../../utils/numberToPlaceValue';
+import { convertData } from '../../../utils/lineChart';
+import { ITrend } from '../../../types/trend';
+import Dropdown from '../../../components/Dropdown/Dropdown';
+
+import styles from './lineChart.module.scss';
 
 interface IData {
   name: string;
@@ -142,6 +143,7 @@ const LineChart = () => {
           <VictoryAxis
             style={{
               axis: { stroke: 'transparent' },
+              grid: { stroke: 'transparent' },
               tickLabels: {
                 fill: '#94A2AD',
                 fontSize: 12,

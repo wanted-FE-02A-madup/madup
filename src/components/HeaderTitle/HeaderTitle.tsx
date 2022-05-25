@@ -1,5 +1,5 @@
-import React from 'react';
-import DatePicker from '../DashBoard/DatePicker/DatePicker';
+import DatePicker from '../../pages/Dashboard/DatePicker/DatePicker';
+
 import styles from './headerTitle.module.scss';
 
 interface IProps {

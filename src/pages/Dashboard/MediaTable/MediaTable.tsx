@@ -1,7 +1,9 @@
-import styles from './mediaTable.module.scss';
 import MEDIA_DATA from '../../../data/wanted_FE-media-channel-data-set.json';
+
 import { useTableData } from '../../../hooks/useTableData';
 import { useTotalData } from '../../../hooks/useTotalData';
+
+import styles from './mediaTable.module.scss';
 
 const TABLEDATA = ['광고비', '매출', 'ROAS', '노출수', '클릭 수', '클릭률(CTR)', '클릭당비용(CPC)'];
 

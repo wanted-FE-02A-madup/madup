@@ -1,7 +1,9 @@
 @use '/src/styles/mixins/flexbox';
+@use '/src/styles/constants/colors';
 
 .main {
   width: 100%;
+  height: calc(100% - 80px);
   padding-bottom: 25px;
-  background: #f6f7f8;
+  background: colors.$BGG;
 }

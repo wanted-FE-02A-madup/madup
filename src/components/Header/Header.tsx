@@ -1,5 +1,6 @@
-import styles from './header.module.scss';
 import { Profile, Alarm, Setting } from '../../assets/index';
+
+import styles from './header.module.scss';
 
 const Header = () => {
   return (

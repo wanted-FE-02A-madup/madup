@@ -1,11 +1,9 @@
 import { useRecoilValue } from 'recoil';
 
+import TREND_DATA from '../../../data/wanted_FE_trend-data-set.json';
 import handleData from '../../../utils/handleData';
 import numberToPlaceValue from '../../../utils/numberToPlaceValue';
-
 import { endDayState, startDayState } from '../../../recoil/recoil';
-
-import TREND_DATA from '../../../data/wanted_FE_trend-data-set.json';
 
 import TrendReportItem from './TrendReportItem/trendReportItem';
 

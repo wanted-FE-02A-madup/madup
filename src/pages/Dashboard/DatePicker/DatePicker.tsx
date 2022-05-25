@@ -1,13 +1,14 @@
-import { cx } from '../../../styles';
 import { useState } from 'react';
-
 import Calendar from 'react-calendar';
+import { useRecoilState } from 'recoil';
+
+import { endDayState, startDayState } from '../../../recoil/recoil';
 
 import { ArrowDown } from '../../../assets/index';
+
 import './calendar.scss';
 import styles from './datePicker.module.scss';
-import { endDayState, startDayState } from '../../../recoil/recoil';
-import { useRecoilState } from 'recoil';
+import { cx } from '../../../styles';
 
 const dateRange = [new Date('2022-02-01'), new Date('2022-04-20')];
 
