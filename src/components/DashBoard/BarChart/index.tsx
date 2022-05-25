@@ -1,7 +1,7 @@
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryStack, VictoryTheme, VictoryTooltip } from 'victory';
-
 import styles from './barChart.module.scss';
 import barChartData from '../../../utils/barChartData';
+
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryStack, VictoryTheme, VictoryTooltip } from 'victory';
 
 const colorScale = ['#AC8AF8', '#85DA47', '#f9e000', '#4FADF7'];
 
@@ -20,15 +20,18 @@ const BarChart = () => {
       >
         <VictoryAxis
           style={{
+            axis: { stroke: 'transparent' },
             tickLabels: {
               fill: '#94A2AD',
-              fontSize: 14,
+              fontSize: 12,
             },
+            ticks: { stroke: 'transparent' },
           }}
           tickValues={[1, 2, 3, 4, 5]}
           tickFormat={['광고비', '매출', '노출수', '클릭수', '전환수']}
         />
         <VictoryAxis
+          crossAxis={false}
           style={{
             axis: { stroke: 'transparent' },
             tickLabels: {
@@ -40,7 +43,7 @@ const BarChart = () => {
           }}
           dependentAxis
           tickFormat={(x) => `${x}%`}
-          tickValues={[20, 40, 60, 80, 100]}
+          tickValues={[0, 20, 40, 60, 80, 100]}
         />
         <VictoryStack
           colorScale={colorScale}
@@ -52,7 +55,7 @@ const BarChart = () => {
             style={{
               data: { stroke: 'transparent' },
             }}
-            barWidth={20}
+            barWidth={25}
             data={google}
             x='category'
             y='percentage'
@@ -74,7 +77,7 @@ const BarChart = () => {
                 flyoutStyle={{ fill: '#3A474E' }}
               />
             }
-            barWidth={20}
+            barWidth={25}
             data={naver}
             x='category'
             y='percentage'
@@ -88,7 +91,7 @@ const BarChart = () => {
                 flyoutStyle={{ fill: '#3A474E' }}
               />
             }
-            barWidth={20}
+            barWidth={25}
             data={facebook}
             x='category'
             y='percentage'
@@ -103,7 +106,7 @@ const BarChart = () => {
               />
             }
             cornerRadius={{ top: 5, bottom: 0 }}
-            barWidth={20}
+            barWidth={25}
             data={kakao}
             x='category'
             y='percentage'

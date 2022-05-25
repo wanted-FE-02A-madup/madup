@@ -8,9 +8,9 @@ const Aside = () => {
   const asideCategory = ['매드업', '서비스 추가하기'];
   return (
     <aside className={styles.sidebar}>
-      <h1 className={styles.logo}>
+      <NavLink to='/' className={styles.logo}>
         <Logo />
-      </h1>
+      </NavLink>
       <div className={styles.service}>
         <p className={styles.title}>서비스</p>
         <Dropdown option={asideCategory} title='매드업' />
