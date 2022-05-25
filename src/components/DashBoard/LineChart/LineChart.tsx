@@ -18,6 +18,7 @@ import trandDataFilter from '../../../utils/trandDataFilter';
 import { ITrend } from '../../../types/trend';
 import Dropdown from '../../Dropdown/Dropdown';
 import { useEffect } from 'react';
+import numberToPlaceValue from '../../../utils/numberToPlaceValue';
 
 interface IData {
   name: string;
@@ -87,13 +88,27 @@ const LineChart = () => {
     return dataArr;
   };
 
+  const dataFormat = (t: number, orientation: string) => {
+    const orien = orientation === 'left' ? category1 : category2;
+    const formatValue = {
+      ROAS: '%',
+      광고비: '원',
+      노출수: '회',
+      클릭수: '회',
+      전환수: '회',
+      매출: '원',
+      없음: '',
+    }[orien];
+    return `${numberToPlaceValue(Math.round(t))}${formatValue}`;
+  };
+
   const options = {
     width: 900,
     height: 240,
     padding: {
-      left: 0,
+      left: 80,
       top: 40,
-      right: 60,
+      right: 80,
       bottom: 30,
     },
     scale: { x: 'time' as ScalePropType },
@@ -110,7 +125,6 @@ const LineChart = () => {
       <section className={styles.chart}>
         <VictoryChart
           theme={VictoryTheme.material}
-          domainPadding={1}
           containerComponent={
             <VictoryVoronoiContainer
               voronoiDimension='x'
@@ -122,14 +136,6 @@ const LineChart = () => {
         >
           <VictoryAxis
             style={{
-              tickLabels: {
-                fill: '#94A2AD',
-                fontSize: 12,
-              },
-            }}
-          />
-          <VictoryAxis
-            style={{
               axis: { stroke: 'transparent' },
               tickLabels: {
                 fill: '#94A2AD',
@@ -139,7 +145,27 @@ const LineChart = () => {
               ticks: { stroke: 'transparent' },
             }}
           />
+          {category2 !== '없음' && (
+            <VictoryAxis
+              dependentAxis
+              orientation='right'
+              style={{
+                axis: { stroke: 'transparent' },
+                tickLabels: {
+                  fill: '#94A2AD',
+                  fontSize: 12,
+                  paddingTop: 20,
+                },
+                ticks: { stroke: 'transparent' },
+              }}
+              tickCount={6}
+              tickFormat={(t) => dataFormat(t, 'right')}
+            />
+          )}
+
           <VictoryAxis
+            dependentAxis
+            orientation='left'
             style={{
               axis: { stroke: 'transparent' },
               tickLabels: {
@@ -149,24 +175,24 @@ const LineChart = () => {
               },
               ticks: { stroke: 'transparent' },
             }}
+            tickCount={6}
+            tickFormat={(t) => dataFormat(t, 'left')}
           />
+
           <VictoryLine
             style={{
               data: { stroke: COLORS.SKYBLUE },
               parent: { border: '1px solid #ccc' },
             }}
             data={handleSelectedData(category1)}
-            x='x'
-            y='y'
           />
+
           <VictoryLine
             style={{
               data: { stroke: COLORS.LIGHTGREEN },
               parent: { border: '1px solid #ccc' },
             }}
             data={handleSelectedData(category2)}
-            x='x'
-            y='y'
           />
         </VictoryChart>
       </section>
