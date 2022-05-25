@@ -7,6 +7,7 @@ import MEDIA_DATA from '../../data/wanted_FE-media-channel-data-set.json';
 import TrendReport from '../../components/DashBoard/TrendReport/trendReport';
 import HeaderTitle from '../../components/HeaderTitle/HeaderTitle';
 import LineChart from '../../components/DashBoard/LineChart/LineChart';
+import Loading from '../../components/Loading/Loading';
 
 const Dashboard = () => {
   const fetchData = useFetchData(MEDIA_DATA);
@@ -24,7 +25,7 @@ const Dashboard = () => {
             <MediaTable />
           </>
         ) : (
-          <div>loading...</div>
+          <Loading />
         )}
       </ContentsContainer>
     </>
