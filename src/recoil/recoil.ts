@@ -10,9 +10,9 @@ export const asideState = atom<string>({
   default: '매드업',
 });
 
-export const isopenDropDown = atom<boolean>({
-  key: 'isopenDropDown',
-  default: false,
+export const advertisingStatusState = atom<string>({
+  key: 'advertisingStatusState',
+  default: '주간',
 });
 
 export const startDayState = atom<Date>({

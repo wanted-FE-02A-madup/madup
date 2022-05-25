@@ -7,9 +7,16 @@ import { convertData } from './utils';
 import SelectBox from '../../SelectBox/SelectBox';
 
 import styles from './lineChart.module.scss';
-import { startDayState, endDayState, categoryState1, categoryState2 } from '../../../recoil/recoil';
+import {
+  startDayState,
+  endDayState,
+  categoryState1,
+  categoryState2,
+  advertisingStatusState,
+} from '../../../recoil/recoil';
 import trandDataFilter from '../../../utils/trandDataFilter';
 import { ITrend } from '../../../types/trend';
+import Dropdown from '../../Dropdown/Dropdown';
 
 const chartCategory = ['ROAS', '광고비', '노출수', '클릭수', '전환수', '매출'];
 const termCategory = ['주간', '일간'];
@@ -24,6 +31,8 @@ const LineChart = () => {
   const data = trandDataFilter(startDate, endDate);
   const [category1, setCategory1] = useRecoilState(categoryState1);
   const [category2, setCategory2] = useRecoilState(categoryState2);
+
+  const [advertisingStatusTitle, setAdvertisingStatusTitle] = useRecoilState(advertisingStatusState);
 
   const { imp, click, cost, conv, convValue, ctr, cvr, cpc, cpa, roas } = convertData(data as ITrend[]);
 
@@ -45,7 +54,7 @@ const LineChart = () => {
           <SelectBox option={chartCategory} color='blue' />
           <SelectBox option={chartCategory} color='green' />
         </div>
-        <SelectBox option={termCategory} />
+        <Dropdown option={termCategory} title={advertisingStatusTitle} onClick={setAdvertisingStatusTitle} />
       </div>
       <section className={styles.chart}>
         <VictoryChart
