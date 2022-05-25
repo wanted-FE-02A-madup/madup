@@ -1,33 +1,27 @@
 import { ITrend } from '../../../types/trend';
 
-type Data = {
+export type Data = {
   x: string;
   y: number;
 };
 
-// const parseDate = (rawStr: number) => {
-//   const str = rawStr.toString();
-//   const y = Number(str.substring(0, 4));
-//   const m = Number(str.substring(4, 6)) - 1;
-//   const d = Number(str.substring(6, 8));
-//   return new Date(y, m, d);
-// };
-
 export const convertData = (data: ITrend[]) => {
+  const roas: Data[] = [];
+  const cost: Data[] = [];
   const imp: Data[] = [];
   const click: Data[] = [];
-  const cost: Data[] = [];
-  const conv: Data[] = [];
-  const convValue: Data[] = [];
-  const ctr: Data[] = [];
-  const cvr: Data[] = [];
-  const cpc: Data[] = [];
-  const cpa: Data[] = [];
-  const roas: Data[] = [];
-
-  console.log(data);
+  const conversions: Data[] = [];
+  const sales: Data[] = [];
 
   data.forEach((d) => {
+    roas.push({
+      x: d.date,
+      y: d.roas,
+    });
+    cost.push({
+      x: d.date,
+      y: d.cost,
+    });
     imp.push({
       x: d.date,
       y: d.imp,
@@ -36,50 +30,22 @@ export const convertData = (data: ITrend[]) => {
       x: d.date,
       y: d.click,
     });
-    cost.push({
+    conversions.push({
       x: d.date,
-      y: d.cost,
+      y: d.cvr * d.cvr,
     });
-    conv.push({
+    sales.push({
       x: d.date,
-      y: d.conv,
-    });
-    convValue.push({
-      x: d.date,
-      y: d.convValue,
-    });
-    ctr.push({
-      x: d.date,
-      y: d.ctr,
-    });
-    cvr.push({
-      x: d.date,
-      y: d.cvr,
-    });
-    cpc.push({
-      x: d.date,
-      y: d.cpc,
-    });
-    cpa.push({
-      x: d.date,
-      y: d.cpa,
-    });
-    roas.push({
-      x: d.date,
-      y: d.roas,
+      y: (d.roas * d.cost) / 100,
     });
   });
 
   return {
+    roas,
+    cost,
     imp,
     click,
-    cost,
-    conv,
-    convValue,
-    ctr,
-    cvr,
-    cpc,
-    cpa,
-    roas,
+    conversions,
+    sales,
   };
 };

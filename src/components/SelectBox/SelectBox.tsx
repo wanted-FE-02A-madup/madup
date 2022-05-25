@@ -24,11 +24,34 @@ const SelectBox = ({ option, color }: IProps) => {
     setOptionTitle(value);
     setIsopenDropDown(false);
     if (!color) return;
+    let convertValue = '';
+    switch (value) {
+      case 'ROAS':
+        convertValue = 'roas';
+        break;
+      case '광고비':
+        convertValue = 'cost';
+        break;
+      case '노출수':
+        convertValue = 'imp';
+        break;
+      case '클릭수':
+        convertValue = 'click';
+        break;
+      // 수정 필요
+      case '전환수':
+        convertValue = 'conversions';
+        break;
+      // 수정 필요
+      case '매출':
+        convertValue = 'sales';
+        break;
+    }
     if (color === 'blue') {
-      setCategory1(value.value);
+      setCategory1(convertValue);
     }
     if (color === 'green') {
-      setCategory2(value.value);
+      setCategory2(convertValue);
     }
   };
 
