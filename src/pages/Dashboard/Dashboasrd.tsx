@@ -4,10 +4,10 @@ import MEDIA_DATA from '../../data/wanted_FE-media-channel-data-set.json';
 import HeaderTitle from '../../components/HeaderTitle/HeaderTitle';
 
 import Loading from '../../components/Loading/Loading';
+import MediaTable from './MediaTable/MediaTable';
 import TrendReport from './TrendReport/trendReport';
 import LineChart from './LineChart/LineChart';
 import BarChart from './BarChart';
-import MediaTable from './MediaTable/MediaTable';
 import styles from './dashboard.module.scss';
 
 const Dashboard = () => {
