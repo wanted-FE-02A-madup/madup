@@ -1,46 +1,83 @@
-# Getting Started with Create React App
+# 매드업 기업과제
+팀원 : 안주환, 조윤지, 박혜민, 민경미, 지창근  
+개발기간 : 22/05/23 ~ 22/05/25
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
+### 파일구조
+```
+src  
+  ├─assets  
+  │  └─svgs  
+  ├─components
+  │  ├─Aside
+  │  ├─Button
+  |  ├─ContentsContainer
+  |  ├─Dropdown
+  |  ├─Header    
+  │  ├─HeaderTitle
+  |  ├─Lading   
+  │  └─Layout
+  ├─data
+  ├─hooks
+  │  └─worker
+  ├─pages
+  │  ├─Dashboard
+  |  |  ├─BarChart
+  |  |  ├─DatePicker
+  |  |  ├─LineChart
+  |  |  ├─MediaTable
+  |  |  └─TrendReport
+  |  |     └─TrendReportItem
+  │  └─Manage
+  |     └─ManageItem
+  ├─recoil
+  ├─routes
+  ├─styles
+  │  ├─base
+  │  ├─constants
+  │  └─mixins
+  ├─types
+  └─utils
+```
+<br>
 
-In the project directory, you can run:
+### 기술스택
+- React
 
-### `yarn start`
+- TypeScript
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- SCSS
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br>
 
-### `yarn test`
+### 라이브러리 
+- lodash: 4.17.21: 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- recoil: 0.7.3-alpha.2: Global variable를 사용
 
-### `yarn build`
+- victory: 36.4.0: 차트 라이브러리
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- react-calendar: 3.7.0: calendar
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- dayjs: 1.11.2: 날짜 라이브러리
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
 
-### `yarn eject`
+### 기능
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+>공통
+- loading
+- react-calendar
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+>대시보드
+- chart
+- table
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+>광고관리
+- dropdown을 클릭시 status에 따라 해당 광고만 보여줍니다.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
