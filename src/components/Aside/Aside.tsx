@@ -13,9 +13,9 @@ const Aside = () => {
 
   return (
     <aside className={styles.sidebar}>
-      <h1 className={styles.logo}>
+      <NavLink to='/' className={styles.logo}>
         <Logo />
-      </h1>
+      </NavLink>
       <div className={styles.service}>
         <p className={styles.title}>서비스</p>
         <Dropdown option={ASIDE_CATEGORY} title={asideTitle} onClick={setAsideTitle} />
