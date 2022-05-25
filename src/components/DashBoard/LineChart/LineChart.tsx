@@ -15,7 +15,7 @@ const chartCategory = ['ROAS', '광고비', '노출수', '클릭수', '전환수
 const termCategory = ['주간', '일간'];
 
 const dateRangeFunc = (paramDate: Date): string => {
-  return `${paramDate.getFullYear()}-${paramDate.getMonth()}-${paramDate.getDate()}`;
+  return `${paramDate.getFullYear()}-${paramDate.getMonth() + 1}-${paramDate.getDate()}`;
 };
 
 const LineChart = () => {
@@ -113,9 +113,17 @@ const LineChart = () => {
               },
               ticks: { stroke: 'transparent' },
             }}
-            dependentAxis
-            tickFormat={(x) => `${x}%`}
-            tickValues={[21, 61, 101, 141, 181, 221]}
+          />
+          <VictoryAxis
+            style={{
+              axis: { stroke: 'transparent' },
+              tickLabels: {
+                fill: '#94A2AD',
+                fontSize: 12,
+                paddingTop: 20,
+              },
+              ticks: { stroke: 'transparent' },
+            }}
           />
           <VictoryLine
             style={{
