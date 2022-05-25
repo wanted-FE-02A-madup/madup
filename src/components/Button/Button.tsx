@@ -6,6 +6,7 @@ interface IProps {
 }
 const Button = ({ children, createButton }: IProps) => {
   const createBtn = createButton ? `${styles.createBtn}` : '';
+  console.log(createBtn);
   return (
     <button type='button' className={`${styles.button} ${createBtn}`}>
       {children}

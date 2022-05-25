@@ -1,22 +1,19 @@
 import styles from './aside.module.scss';
-import { Logo, ArrowDown, Dashboard, Ad, Guide } from '../../assets/index';
+import { Logo, Dashboard, Ad, Guide } from '../../assets/index';
 import { NavLink } from 'react-router-dom';
 import { cx } from '../../styles';
+import Dropdown from '../Dropdown/Dropdown';
 
 const Aside = () => {
+  const asideCategory = ['매드업', '서비스 추가하기'];
   return (
-    <section className={styles.sidebar}>
+    <aside className={styles.sidebar}>
       <h1 className={styles.logo}>
         <Logo />
       </h1>
       <div className={styles.service}>
         <p className={styles.title}>서비스</p>
-        <div className={styles.selector}>
-          <p>매드업</p>
-          <span>
-            <ArrowDown />
-          </span>
-        </div>
+        <Dropdown option={asideCategory} title='매드업' />
       </div>
       <div className={styles.addCenter}>
         <p className={styles.title}>광고센터</p>
@@ -46,7 +43,7 @@ const Aside = () => {
           이용약관
         </a>
       </div>
-    </section>
+    </aside>
   );
 };
 
