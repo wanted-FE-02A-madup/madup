@@ -36,7 +36,6 @@ export default function handleData(date1: Date, date2: Date, dataSet: ITrendData
     currentDataStructure.find((item) => item.category === '전환 수')!.value += d.conv;
     currentDataStructure.find((item) => item.category === '매출')!.value += (d.roas * d.cost) / 100;
   });
-  currentDataStructure[0].value = (currentDataStructure[5].value / currentDataStructure[1].value) * 100;
 
   pastData.forEach((d) => {
     prevDataStructure.find((item) => item.category === '광고비')!.value += d.cost;
@@ -45,12 +44,19 @@ export default function handleData(date1: Date, date2: Date, dataSet: ITrendData
     prevDataStructure.find((item) => item.category === '전환 수')!.value += d.conv;
     prevDataStructure.find((item) => item.category === '매출')!.value += (d.roas * d.cost) / 100;
   });
-  prevDataStructure[0].value = (prevDataStructure[5].value / prevDataStructure[1].value) * 100;
 
   for (let i = 1; i < 6; i += 1) {
     diff[i].value = currentDataStructure[i].value - prevDataStructure[i].value;
   }
-  diff[0].value = ((currentDataStructure[0].value - prevDataStructure[0].value) / prevDataStructure[0].value) * 100;
+  if (!prevDataStructure[0].value) {
+    diff[0].value = currentDataStructure[0].value;
+  }
+
+  currentDataStructure[0].value = (currentDataStructure[5].value / currentDataStructure[1].value) * 100;
+  prevDataStructure[0].value = (prevDataStructure[5].value / prevDataStructure[1].value) * 100;
+  diff[0].value = prevDataStructure[0].value
+    ? ((currentDataStructure[0].value - prevDataStructure[0].value) / prevDataStructure[0].value) * 100
+    : 100;
 
   return { currentDataStructure, prevDataStructure, diff };
 }

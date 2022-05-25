@@ -17,12 +17,12 @@ export const advertisingStatusState = atom<string>({
 
 export const startDayState = atom<Date>({
   key: 'startDayState',
-  default: new Date(2022, 2, 1),
+  default: new Date('2022-02-01'),
 });
 
 export const endDayState = atom<Date>({
   key: 'endDayState',
-  default: new Date(2022, 2, 7),
+  default: new Date('2022-02-07'),
 });
 
 export const categoryState1 = atom<string>({
