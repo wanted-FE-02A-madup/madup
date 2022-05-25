@@ -3,7 +3,7 @@ import ContentsContainer from '../../components/ContentsContainer/ContentsContai
 import ManageItem from '../../components/Management/ManageItem/ManageItem';
 import styles from './manage.module.scss';
 import ADLIST from '../../data/wanted_FE_ad-list-data-set.json';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { optionTitleState } from '../../recoil/recoil';
 import HeaderTitle from '../../components/HeaderTitle/HeaderTitle';
 import Dropdown from '../../components/Dropdown/Dropdown';
@@ -17,12 +17,14 @@ const Manage = () => {
   const activeItem = ADLIST.ads.filter((item) => item.status === 'active');
   const endedItem = ADLIST.ads.filter((item) => item.status === 'ended');
 
+  const setOptionTitleState = useSetRecoilState(optionTitleState);
+
   return (
     <section className={styles.manageWrap}>
       <HeaderTitle isDate={false} title='광고관리' />
       <ContentsContainer>
         <div className={styles.manageHeader}>
-          <Dropdown option={managementCategory} title='전체 광고' />
+          <Dropdown option={managementCategory} title={optionTitle} />
 
           <Button createButton='createButton'>광고 만들기</Button>
         </div>
