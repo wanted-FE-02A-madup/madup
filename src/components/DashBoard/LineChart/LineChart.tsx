@@ -2,7 +2,7 @@ import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, V
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { ScalePropType } from 'victory-core';
 import { COLORS } from './chartColorOption';
-import { convertData, Data } from './utils';
+import { convertData } from './utils';
 
 import SelectBox from '../../SelectBox/SelectBox';
 
@@ -102,6 +102,13 @@ const LineChart = () => {
     return `${numberToPlaceValue(Math.round(t))}${formatValue}`;
   };
 
+  const tickVal = Array.from(new Array(data.length), (x, i) => i + 1);
+  const newDateFormat: string[] = [];
+  data.forEach((item) => {
+    const sliceDate = item.date.split('-');
+    newDateFormat.push(`${sliceDate[1]}월 ${sliceDate[2]}일`);
+  });
+
   const options = {
     width: 900,
     height: 240,
@@ -144,6 +151,8 @@ const LineChart = () => {
               },
               ticks: { stroke: 'transparent' },
             }}
+            tickValues={tickVal}
+            tickFormat={newDateFormat}
           />
           {category2 !== '없음' && (
             <VictoryAxis
