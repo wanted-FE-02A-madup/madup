@@ -3,10 +3,10 @@ export interface ITrendData {
 }
 
 export interface IReport {
-  daily: IDaily[];
+  daily: ITrend[];
 }
 
-export interface IDaily {
+export interface ITrend {
   imp: number;
   click: number;
   cost: number;

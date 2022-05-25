@@ -6,8 +6,8 @@ import Calendar from 'react-calendar';
 import { ArrowDown } from '../../../assets/index';
 import 'react-calendar/dist/Calendar.css';
 import styles from './datePicker.module.scss';
+import { endDayState, startDayState } from '../../../recoil/recoil';
 import { useRecoilState } from 'recoil';
-import { endDateState, startDateState } from '../../../recoil/recoil';
 
 const dateLange = [new Date(2022, 2, 1), new Date(2022, 3, 20)];
 
@@ -16,10 +16,11 @@ const dateRangeFunc = (paramDate: Date): String => {
 };
 
 const DatePicker = () => {
-  const [startDate, setStartDate] = useRecoilState(startDateState);
-  const [endDate, setEndDate] = useRecoilState(endDateState);
+  const [startDate, setStartDate] = useRecoilState(startDayState);
+  const [endDate, setEndDate] = useRecoilState(endDayState);
 
   const [calendar, setCalendar] = useState(false);
+
   const handleCalendarToggle = () => {
     setCalendar(!calendar);
   };

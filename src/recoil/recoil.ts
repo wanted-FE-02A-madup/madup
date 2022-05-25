@@ -5,12 +5,22 @@ export const optionTitleState = atom<string>({
   default: '전체 광고',
 });
 
-export const startDateState = atom({
-  key: 'startDateState',
-  default: new Date(2022, 2, 3),
+export const startDayState = atom<Date>({
+  key: 'startDayState',
+  default: new Date(2022, 2, 1),
 });
 
-export const endDateState = atom({
-  key: 'endDateState',
+export const endDayState = atom<Date>({
+  key: 'endDayState',
   default: new Date(2022, 2, 7),
+});
+
+export const categoryState1 = atom<string>({
+  key: 'categoryState1',
+  default: 'roas',
+});
+
+export const categoryState2 = atom<string>({
+  key: 'categoryState2',
+  default: '',
 });
