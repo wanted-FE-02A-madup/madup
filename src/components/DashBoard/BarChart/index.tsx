@@ -3,7 +3,7 @@ import { VictoryBar, VictoryChart, VictoryAxis, VictoryStack, VictoryTheme, Vict
 import styles from './barChart.module.scss';
 import barChartData from '../../../utils/barChartData';
 
-const colorScale = ['#AC8AF8', '#85DA47', '#4FADF7', '#f9e000'];
+const colorScale = ['#AC8AF8', '#85DA47', '#f9e000', '#4FADF7'];
 
 const BarChart = () => {
   const [google, naver, facebook, kakao] = barChartData();
