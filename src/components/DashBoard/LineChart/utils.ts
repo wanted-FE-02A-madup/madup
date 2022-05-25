@@ -1,6 +1,6 @@
 import { ITrend } from '../../../types/trend';
 
-type Data = {
+export type Data = {
   x: string;
   y: number;
 };
