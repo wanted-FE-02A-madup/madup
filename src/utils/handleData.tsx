@@ -47,10 +47,10 @@ export default function handleData(date1: Date, date2: Date, dataSet: ITrendData
   });
   prevDataStructure[0].value = (prevDataStructure[5].value / prevDataStructure[1].value) * 100;
 
-  diff[0].value = ((currentDataStructure[0].value - prevDataStructure[0].value) / prevDataStructure[0].value) * 100;
   for (let i = 1; i < 6; i += 1) {
     diff[i].value = currentDataStructure[i].value - prevDataStructure[i].value;
   }
+  diff[0].value = ((currentDataStructure[0].value - prevDataStructure[0].value) / prevDataStructure[0].value) * 100;
 
   return { currentDataStructure, prevDataStructure, diff };
 }

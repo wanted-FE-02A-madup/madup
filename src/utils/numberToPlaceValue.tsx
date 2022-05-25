@@ -1,6 +1,6 @@
 import getNumber from './getNumber';
 
-export default function numberToKorean(number: number) {
+export default function numberToPlaceValue(number: number) {
   const inputNumber = Math.abs(number);
   const unitWords = ['', '만', '억', '조', '경'];
   const splitUnit = 10_000;

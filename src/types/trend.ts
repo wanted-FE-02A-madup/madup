@@ -1,12 +1,12 @@
 export interface ITrendData {
-  report: Report;
+  report: IReport;
 }
 
-interface Report {
-  daily: Daily[];
+export interface IReport {
+  daily: IDaily[];
 }
 
-interface Daily {
+export interface IDaily {
   imp: number;
   click: number;
   cost: number;
