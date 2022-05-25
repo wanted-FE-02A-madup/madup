@@ -1,13 +1,14 @@
-import ContentsContainer from '../../components/ContentsContainer/ContentsContainer';
 import { useFetchData } from '../../hooks/useFetchData';
 import MEDIA_DATA from '../../data/wanted_FE-media-channel-data-set.json';
-import HeaderTitle from '../../components/HeaderTitle/HeaderTitle';
 
+import HeaderTitle from '../../components/HeaderTitle/HeaderTitle';
+import ContentsContainer from '../../components/ContentsContainer/ContentsContainer';
 import Loading from '../../components/Loading/Loading';
 import MediaTable from './MediaTable/MediaTable';
 import TrendReport from './TrendReport/trendReport';
 import LineChart from './LineChart/LineChart';
 import BarChart from './BarChart';
+
 import styles from './dashboard.module.scss';
 
 const Dashboard = () => {

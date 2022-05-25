@@ -5,12 +5,12 @@ import styles from './header.module.scss';
 const Header = () => {
   return (
     <header className={styles.header}>
-      <span className={`${styles.icon} ${styles.alarm}`}>
+      <div className={`${styles.icon} ${styles.alarm}`}>
         <Alarm />
-      </span>
-      <span className={styles.icon}>
+      </div>
+      <div className={styles.icon}>
         <Setting />
-      </span>
+      </div>
       <div className={`${styles.profile}`}>
         <div className={styles.profileIcon}>
           <Profile />

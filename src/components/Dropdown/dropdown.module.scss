@@ -17,8 +17,8 @@
   }
 
   &.advertisingStatusDropDown {
-    border: none;
     width: 80px;
+    border: none;
   }
 
   button {
@@ -60,9 +60,9 @@
   }
 
   ul {
-    width: 100%;
     position: absolute;
     z-index: 9;
+    width: 100%;
     background-color: colors.$WHITE;
     border: 1px solid colors.$GRAY100;
     border-radius: 10px;

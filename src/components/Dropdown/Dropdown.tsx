@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { ArrowDown } from '../../assets';
 import { advertisingStatusState, asideState } from '../../recoil/recoil';
@@ -24,8 +24,8 @@ const Dropdown = ({ option, title, color, onClick }: IProps) => {
     setIsopenDropDown((prev) => !prev);
   };
 
-  const handleChangeTitle = (item: string) => {
-    onClick(item);
+  const handleChangeTitle = (e: FormEvent<HTMLButtonElement>) => {
+    onClick(e.currentTarget.value);
     setIsopenDropDown(false);
   };
 
@@ -55,7 +55,7 @@ const Dropdown = ({ option, title, color, onClick }: IProps) => {
           {option.map((item) => {
             return (
               <li key={Math.random() * 1000}>
-                <button type='button' onClick={() => handleChangeTitle(item)} value={item}>
+                <button type='button' onClick={handleChangeTitle} value={item}>
                   {item}
                 </button>
               </li>
