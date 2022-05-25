@@ -25,7 +25,9 @@ const LineChart = () => {
   const [category1, setCategory1] = useRecoilState(categoryState1);
   const [category2, setCategory2] = useRecoilState(categoryState2);
 
-  const { imp, click, cost, conv, convValue, ctr, cvr, cpc, cpa, roas } = convertData(data as ITrend[]);
+  console.log(category1);
+  console.log(category2);
+  const { roas, cost, imp, click, conversions, sales } = convertData(data as ITrend[]);
 
   const options = {
     width: 900,
