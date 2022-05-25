@@ -1,19 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { ArrowDown } from '../../assets';
-import { optionTitleState } from '../../recoil/recoil';
+import { advertisingStatusState, asideState } from '../../recoil/recoil';
 import styles from './dropdown.module.scss';
 
 interface IProps {
   option: Array<string>;
   title: string;
+  onClick: (value: string) => void;
 }
-const Dropdown = ({ option, title }: IProps) => {
-  const asideDropDown = title === '매드업' ? `${styles.asideDropDown}` : '';
-
+const Dropdown = ({ option, title, onClick }: IProps) => {
+  const asideTitle = useRecoilValue(asideState);
+  const advertisingStatusTitle = useRecoilValue(advertisingStatusState);
   const [isopenDropDown, setIsopenDropDown] = useState(false);
-  const [optionTitle, setOptionTitle] = useState(title);
-  const setOptionTitleState = useSetRecoilState(optionTitleState);
+
+  const asideDropDown = title === asideTitle ? `${styles.asideDropDown}` : '';
+  const advertisingStatusDropDown = title === advertisingStatusTitle ? `${styles.advertisingStatusDropDown}` : '';
 
   const dropDownRef = useRef<HTMLDivElement>(null);
 
@@ -21,11 +23,9 @@ const Dropdown = ({ option, title }: IProps) => {
     setIsopenDropDown((prev) => !prev);
   };
 
-  const handleChangeTitle = (e: any) => {
-    const { value } = e.currentTarget;
-    setOptionTitle(value);
+  const handleChangeTitle = (item: string) => {
+    onClick(item);
     setIsopenDropDown(false);
-    setOptionTitleState(value);
   };
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const Dropdown = ({ option, title }: IProps) => {
   };
 
   return (
-    <div className={`${styles.dropdown} ${asideDropDown}`} ref={dropDownRef}>
+    <div className={`${styles.dropdown} ${asideDropDown} ${advertisingStatusDropDown}`} ref={dropDownRef}>
       <button type='button' onClick={handleShowDropDown}>
-        {optionTitle}
+        {title}
         <ArrowDown />
       </button>
       {isopenDropDown && (
@@ -54,7 +54,7 @@ const Dropdown = ({ option, title }: IProps) => {
           {option.map((item) => {
             return (
               <li key={Math.random() * 1000}>
-                <button type='button' onClick={handleChangeTitle} value={item}>
+                <button type='button' onClick={() => handleChangeTitle(item)} value={item}>
                   {item}
                 </button>
               </li>
