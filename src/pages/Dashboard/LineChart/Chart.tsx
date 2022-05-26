@@ -72,6 +72,7 @@ const Chart = () => {
       <VictoryAxis
         style={{
           axis: { stroke: 'transparent' },
+          grid: { stroke: 'transparent' },
           tickLabels: {
             fill: '#94A2AD',
             fontSize: 12,
